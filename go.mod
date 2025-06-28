@@ -1,4 +1,4 @@
-module github.com/watarui/samplepb
+module github.com/watarui-go-cqrs/pb
 
 go 1.24.4
 
