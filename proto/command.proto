@@ -17,16 +17,18 @@ enum CRUD {
 
 // 商品カテゴリ更新 Param 型
 message CategoryUpParam {
-  string id = 1; // 商品カテゴリ番号
-  string name = 2; // 商品カテゴリ名
+  CRUD crud = 1; // CRUD 操作
+  string id = 2; // 商品カテゴリ番号
+  string name = 3; // 商品カテゴリ名
 }
 
 // 商品更新 Param 型
 message ProductUpParam {
-  string id = 1; // 商品番号
-  string name = 2; // 商品名
-  double price = 3; // 商品価格
-  string categoryId = 4; // 商品カテゴリ番号
+  CRUD crud = 1; // CRUD 操作
+  string id = 2; // 商品番号
+  string name = 3; // 商品名
+  double price = 4; // 商品価格
+  string categoryId = 5; // 商品カテゴリ番号
 }
 
 // 商品カテゴリ更新 Result 型

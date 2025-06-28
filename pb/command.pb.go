@@ -77,8 +77,9 @@ func (CRUD) EnumDescriptor() ([]byte, []int) {
 // 商品カテゴリ更新 Param 型
 type CategoryUpParam struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`     // 商品カテゴリ番号
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"` // 商品カテゴリ名
+	Crud          CRUD                   `protobuf:"varint,1,opt,name=crud,proto3,enum=proto.CRUD" json:"crud,omitempty"` // CRUD 操作
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`                      // 商品カテゴリ番号
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`                  // 商品カテゴリ名
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -113,6 +114,13 @@ func (*CategoryUpParam) Descriptor() ([]byte, []int) {
 	return file_proto_command_proto_rawDescGZIP(), []int{0}
 }
 
+func (x *CategoryUpParam) GetCrud() CRUD {
+	if x != nil {
+		return x.Crud
+	}
+	return CRUD_UNKNOWN
+}
+
 func (x *CategoryUpParam) GetId() string {
 	if x != nil {
 		return x.Id
@@ -130,10 +138,11 @@ func (x *CategoryUpParam) GetName() string {
 // 商品更新 Param 型
 type ProductUpParam struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                 // 商品番号
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`             // 商品名
-	Price         float64                `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty"`         // 商品価格
-	CategoryId    string                 `protobuf:"bytes,4,opt,name=categoryId,proto3" json:"categoryId,omitempty"` // 商品カテゴリ番号
+	Crud          CRUD                   `protobuf:"varint,1,opt,name=crud,proto3,enum=proto.CRUD" json:"crud,omitempty"` // CRUD 操作
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`                      // 商品番号
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`                  // 商品名
+	Price         float64                `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`              // 商品価格
+	CategoryId    string                 `protobuf:"bytes,5,opt,name=categoryId,proto3" json:"categoryId,omitempty"`      // 商品カテゴリ番号
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -166,6 +175,13 @@ func (x *ProductUpParam) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ProductUpParam.ProtoReflect.Descriptor instead.
 func (*ProductUpParam) Descriptor() ([]byte, []int) {
 	return file_proto_command_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ProductUpParam) GetCrud() CRUD {
+	if x != nil {
+		return x.Crud
+	}
+	return CRUD_UNKNOWN
 }
 
 func (x *ProductUpParam) GetId() string {
@@ -322,16 +338,18 @@ var File_proto_command_proto protoreflect.FileDescriptor
 
 const file_proto_command_proto_rawDesc = "" +
 	"\n" +
-	"\x13proto/command.proto\x12\x05proto\x1a\x12proto/models.proto\x1a\x11proto/error.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"5\n" +
-	"\x0fCategoryUpParam\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"j\n" +
-	"\x0eProductUpParam\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x01R\x05price\x12\x1e\n" +
+	"\x13proto/command.proto\x12\x05proto\x1a\x12proto/models.proto\x1a\x11proto/error.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"V\n" +
+	"\x0fCategoryUpParam\x12\x1f\n" +
+	"\x04crud\x18\x01 \x01(\x0e2\v.proto.CRUDR\x04crud\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\"\x8b\x01\n" +
+	"\x0eProductUpParam\x12\x1f\n" +
+	"\x04crud\x18\x01 \x01(\x0e2\v.proto.CRUDR\x04crud\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x14\n" +
+	"\x05price\x18\x04 \x01(\x01R\x05price\x12\x1e\n" +
 	"\n" +
-	"categoryId\x18\x04 \x01(\tR\n" +
+	"categoryId\x18\x05 \x01(\tR\n" +
 	"categoryId\"\x9d\x01\n" +
 	"\x10CategoryUpResult\x12+\n" +
 	"\bcategory\x18\x01 \x01(\v2\x0f.proto.CategoryR\bcategory\x12\"\n" +
@@ -384,29 +402,31 @@ var file_proto_command_proto_goTypes = []any{
 	(*Product)(nil),               // 8: proto.Product
 }
 var file_proto_command_proto_depIdxs = []int32{
-	5,  // 0: proto.CategoryUpResult.category:type_name -> proto.Category
-	6,  // 1: proto.CategoryUpResult.error:type_name -> proto.Error
-	7,  // 2: proto.CategoryUpResult.timestamp:type_name -> google.protobuf.Timestamp
-	8,  // 3: proto.ProductUpResult.product:type_name -> proto.Product
-	6,  // 4: proto.ProductUpResult.error:type_name -> proto.Error
-	7,  // 5: proto.ProductUpResult.timestamp:type_name -> google.protobuf.Timestamp
-	1,  // 6: proto.CategoryCommand.Create:input_type -> proto.CategoryUpParam
-	1,  // 7: proto.CategoryCommand.Update:input_type -> proto.CategoryUpParam
-	1,  // 8: proto.CategoryCommand.Delete:input_type -> proto.CategoryUpParam
-	2,  // 9: proto.ProductCommand.Create:input_type -> proto.ProductUpParam
-	2,  // 10: proto.ProductCommand.Update:input_type -> proto.ProductUpParam
-	2,  // 11: proto.ProductCommand.Delete:input_type -> proto.ProductUpParam
-	3,  // 12: proto.CategoryCommand.Create:output_type -> proto.CategoryUpResult
-	3,  // 13: proto.CategoryCommand.Update:output_type -> proto.CategoryUpResult
-	3,  // 14: proto.CategoryCommand.Delete:output_type -> proto.CategoryUpResult
-	4,  // 15: proto.ProductCommand.Create:output_type -> proto.ProductUpResult
-	4,  // 16: proto.ProductCommand.Update:output_type -> proto.ProductUpResult
-	4,  // 17: proto.ProductCommand.Delete:output_type -> proto.ProductUpResult
-	12, // [12:18] is the sub-list for method output_type
-	6,  // [6:12] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	0,  // 0: proto.CategoryUpParam.crud:type_name -> proto.CRUD
+	0,  // 1: proto.ProductUpParam.crud:type_name -> proto.CRUD
+	5,  // 2: proto.CategoryUpResult.category:type_name -> proto.Category
+	6,  // 3: proto.CategoryUpResult.error:type_name -> proto.Error
+	7,  // 4: proto.CategoryUpResult.timestamp:type_name -> google.protobuf.Timestamp
+	8,  // 5: proto.ProductUpResult.product:type_name -> proto.Product
+	6,  // 6: proto.ProductUpResult.error:type_name -> proto.Error
+	7,  // 7: proto.ProductUpResult.timestamp:type_name -> google.protobuf.Timestamp
+	1,  // 8: proto.CategoryCommand.Create:input_type -> proto.CategoryUpParam
+	1,  // 9: proto.CategoryCommand.Update:input_type -> proto.CategoryUpParam
+	1,  // 10: proto.CategoryCommand.Delete:input_type -> proto.CategoryUpParam
+	2,  // 11: proto.ProductCommand.Create:input_type -> proto.ProductUpParam
+	2,  // 12: proto.ProductCommand.Update:input_type -> proto.ProductUpParam
+	2,  // 13: proto.ProductCommand.Delete:input_type -> proto.ProductUpParam
+	3,  // 14: proto.CategoryCommand.Create:output_type -> proto.CategoryUpResult
+	3,  // 15: proto.CategoryCommand.Update:output_type -> proto.CategoryUpResult
+	3,  // 16: proto.CategoryCommand.Delete:output_type -> proto.CategoryUpResult
+	4,  // 17: proto.ProductCommand.Create:output_type -> proto.ProductUpResult
+	4,  // 18: proto.ProductCommand.Update:output_type -> proto.ProductUpResult
+	4,  // 19: proto.ProductCommand.Delete:output_type -> proto.ProductUpResult
+	14, // [14:20] is the sub-list for method output_type
+	8,  // [8:14] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_proto_command_proto_init() }
