@@ -79,7 +79,7 @@ type Product struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                   // 商品番号
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`               // 商品名
-	Price         float64                `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty"`           // 商品単価
+	Price         int32                  `protobuf:"varint,3,opt,name=price,proto3" json:"price,omitempty"`            // 商品単価
 	Category      *Category              `protobuf:"bytes,4,opt,name=category,proto3,oneof" json:"category,omitempty"` // 商品カテゴリ
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -129,7 +129,7 @@ func (x *Product) GetName() string {
 	return ""
 }
 
-func (x *Product) GetPrice() float64 {
+func (x *Product) GetPrice() int32 {
 	if x != nil {
 		return x.Price
 	}
@@ -154,7 +154,7 @@ const file_proto_models_proto_rawDesc = "" +
 	"\aProduct\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x01R\x05price\x120\n" +
+	"\x05price\x18\x03 \x01(\x05R\x05price\x120\n" +
 	"\bcategory\x18\x04 \x01(\v2\x0f.proto.CategoryH\x00R\bcategory\x88\x01\x01B\v\n" +
 	"\t_categoryB\x05Z\x03/pbb\x06proto3"
 
