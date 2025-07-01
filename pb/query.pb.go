@@ -459,8 +459,10 @@ const file_proto_query_proto_rawDesc = "" +
 	"\x06result2}\n" +
 	"\rCategoryQuery\x127\n" +
 	"\x04List\x12\x16.google.protobuf.Empty\x1a\x17.proto.CategoriesResult\x123\n" +
-	"\x04ById\x12\x14.proto.CategoryParam\x1a\x15.proto.CategoryResult2\xb1\x01\n" +
-	"\fProductQuery\x125\n" +
+	"\x04ById\x12\x14.proto.CategoryParam\x1a\x15.proto.CategoryResult2\xe9\x01\n" +
+	"\fProductQuery\x126\n" +
+	"\n" +
+	"ListStream\x12\x16.google.protobuf.Empty\x1a\x0e.proto.Product0\x01\x125\n" +
 	"\x04List\x12\x16.google.protobuf.Empty\x1a\x15.proto.ProductsResult\x121\n" +
 	"\x04ById\x12\x13.proto.ProductParam\x1a\x14.proto.ProductResult\x127\n" +
 	"\tByKeyword\x12\x13.proto.ProductParam\x1a\x15.proto.ProductsResultB\x05Z\x03/pbb\x06proto3"
@@ -506,16 +508,18 @@ var file_proto_query_proto_depIdxs = []int32{
 	8,  // 11: proto.ProductResult.timestamp:type_name -> google.protobuf.Timestamp
 	10, // 12: proto.CategoryQuery.List:input_type -> google.protobuf.Empty
 	0,  // 13: proto.CategoryQuery.ById:input_type -> proto.CategoryParam
-	10, // 14: proto.ProductQuery.List:input_type -> google.protobuf.Empty
-	3,  // 15: proto.ProductQuery.ById:input_type -> proto.ProductParam
-	3,  // 16: proto.ProductQuery.ByKeyword:input_type -> proto.ProductParam
-	1,  // 17: proto.CategoryQuery.List:output_type -> proto.CategoriesResult
-	2,  // 18: proto.CategoryQuery.ById:output_type -> proto.CategoryResult
-	4,  // 19: proto.ProductQuery.List:output_type -> proto.ProductsResult
-	5,  // 20: proto.ProductQuery.ById:output_type -> proto.ProductResult
-	4,  // 21: proto.ProductQuery.ByKeyword:output_type -> proto.ProductsResult
-	17, // [17:22] is the sub-list for method output_type
-	12, // [12:17] is the sub-list for method input_type
+	10, // 14: proto.ProductQuery.ListStream:input_type -> google.protobuf.Empty
+	10, // 15: proto.ProductQuery.List:input_type -> google.protobuf.Empty
+	3,  // 16: proto.ProductQuery.ById:input_type -> proto.ProductParam
+	3,  // 17: proto.ProductQuery.ByKeyword:input_type -> proto.ProductParam
+	1,  // 18: proto.CategoryQuery.List:output_type -> proto.CategoriesResult
+	2,  // 19: proto.CategoryQuery.ById:output_type -> proto.CategoryResult
+	9,  // 20: proto.ProductQuery.ListStream:output_type -> proto.Product
+	4,  // 21: proto.ProductQuery.List:output_type -> proto.ProductsResult
+	5,  // 22: proto.ProductQuery.ById:output_type -> proto.ProductResult
+	4,  // 23: proto.ProductQuery.ByKeyword:output_type -> proto.ProductsResult
+	18, // [18:24] is the sub-list for method output_type
+	12, // [12:18] is the sub-list for method input_type
 	12, // [12:12] is the sub-list for extension type_name
 	12, // [12:12] is the sub-list for extension extendee
 	0,  // [0:12] is the sub-list for field type_name

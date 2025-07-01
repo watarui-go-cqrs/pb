@@ -63,6 +63,8 @@ service CategoryQuery {
 
 // 商品問い合わせサービス型
 service ProductQuery {
+  // すべての商品を取得して返す(Server streaming RPC)
+  rpc ListStream(google.protobuf.Empty) returns (stream Product);
   // 全ての商品の一覧を取得して返す
   rpc List(google.protobuf.Empty) returns (ProductsResult);
   // 指定された ID の商品を取得して返す
